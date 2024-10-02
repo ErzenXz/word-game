@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Finder Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://kit.fontawesome.com/f45cd9c28c.js" crossorigin="anonymous" defer></script>
+
+</head>
+<body>
+    <div id="game-container">
+        <div id="lobby" class="screen">
+            <h1>Word Finder</h1>
+            <div class="form-group">
+                <input type="text" id="player-name" placeholder="Your name">
+                <input type="text" id="room-name" placeholder="Room code">
+            </div>
+            <div class="button-group">
+                <button id="create-room" class="btn btn-primary">Create Room</button>
+                <button id="join-room" class="btn btn-secondary">Join Room</button>
+            </div>
+            <div id="room-list"></div>
+        </div>
+
+        <div id="game" class="screen" style="display: none;">
+            <div id="game-header">
+                <div id="theme-display"></div>
+                <div id="timer">60</div>
+                <div id="word-display"></div>
+            </div>
+            
+            
+            <div id="main-area">            
+
+                <div class="drawing-cont">
+                    <div class="tools">
+                        <button id="clear-canvas" class="btn2" onclick="clearCanvas()"><i class="fa-solid fa-trash-can"></i></button>
+                        <button id="undo" class="btn2" onclick="undo()"><i class="fa-solid fa-rotate-left"></i></button>
+                        <button id="redo" class="btn2" onclick="redo()"><i class="fa-solid fa-rotate-right"></i></button>
+                        <!-- Colors -->
+                        <button class="color" style="background-color: black;" onclick="setColor('black')"></button>
+                        <button class="color" style="background-color: red;" onclick="setColor('red')"></button>
+                        <button class="color" style="background-color: blue;" onclick="setColor('blue')"></button>
+                        <button class="color" style="background-color: green;" onclick="setColor('green')"></button>
+                        <button class="color" style="background-color: yellow;" onclick="setColor('yellow')"></button>
+                        <button class="color" style="background-color: purple;" onclick="setColor('purple')"></button>
+                        <button class="color" style="background-color: orange;" onclick="setColor('orange')"></button>
+
+                        <!-- Sizes -->
+                        <button class="size" data-size="5" onclick="setSize(5)">5</button>
+                        <button class="size" data-size="10" onclick="setSize(10)">10</button>
+                        <button class="size" data-size="15" onclick="setSize(15)">15</button>
+                        <button class="size" data-size="20" onclick="setSize(20)">20</button>
+                    </div>
+                    <canvas id="drawing-canvas" width="800" height="500"></canvas>
+                </div>
+                <div id="players-list"></div>
+
+            </div>
+
+
+            <div id="game-footer">
+                <div id="guess-area">
+                    <input type="text" id="guess-input" placeholder="Type your guess here">
+                    <button id="submit-guess" class="btn btn-primary">Guess</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="chat-sidebar" style="display: none;">
+            <div id="chat-messages"></div>
+            <div id="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-message" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
